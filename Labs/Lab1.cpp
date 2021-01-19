@@ -6,6 +6,10 @@ using namespace std;
  * Due Jan20 2021. 
 */
 
+/***************************************************************************
+Emanuel Dobra   
+Lab 1
+***************************************************************************/
 
 //template for lab on dowhile and switch 
 int main()
@@ -16,42 +20,44 @@ int main()
     */
     srand((unsigned)time(0));
     int number, guess;
-    char again;
-    cout << "Play the guessing game\n\n";
+    char again = 'y';
+    do {
+        cout << "Play the guessing game\n\n";
 
-    //step2a: start a do while loop here
-    number = rand() % 10 + 1; //generate a new random number
-    cout << "I'm thinking of a number from 1 to 10. ";
-
-    //step1a: start another do while loop here to repeatedly ask for guesses
-    cout << "Try to guess it ";
-    cin>> guess;
-    while (guess < 1 || guess > 10 || cin.fail()) //validate guess 1-10
-    {
-        cin.clear();
-        cin.ignore(80,'\n');
-        cout << "number must be 1-10 reenter ";
+        number = rand() % 10 + 1; 
+        cout << "I'm thinking of a number from 1 to 10. ";
+        //repeatedly ask for guesses
+        cout << "Try to guess it ";
         cin >> guess;
-    }
+        do {
+            cin.clear();
+            cin.ignore(80,'\n');
+            cout << "number must be 1-10 reenter ";
+            cin >> guess;
+        } while (guess < 1 || guess > 10 || cin.fail()); //validate guess 1-10
 
-    if (number < guess) //check the guess
-        cout << "too high! ";
-    else if (number >guess)
-        cout << "too low! ";
-    else
-        cout << "Correct! ";
+        if (number < guess) //check the guess
+            cout << "too high! ";
+        else if (number >guess)
+            cout << "too low! ";
+        else
+            cout << "Correct! ";
+        
+        cout << "The number was " << number << endl;
 
-    //step1b: end the dowhile loop if number answered correctly
-    
-    cout << "The number was " << number << endl;
-
-    //step2b: ask the user if he/she wants to play again
-    // store the reply in "again"
-    // validate again (allow y or n), use tolower
-
-    
-    //step2c: end the dowhile loop if they donâ€™t want to play again
-
+        //step2b: ask the user if he/she wants to play again
+        // store the reply in "again"
+        // validate again (allow y or n), use tolower
+        cout << "Do you want to play again? ";
+        cin >> again; 
+        do {
+            cin.clear();
+            cin.ignore(80,'\n');
+            cout << "Invalid input, enter y or n ";
+            cin >> again;
+        } while (tolower(again) != 'y' || tolower(again) != 'n' || cin.fail());
+    } while (tolower(again) == 'y');
+    cout << "\nGame Terminated\n";
 
     /*
      * Example #2: Switch - what is printed if code is 458?
@@ -72,18 +78,19 @@ int main()
     switch (code) //Note: can switch on int or char or double (not string)
     { //switch tests for equality only
         //can have 16,384 cases
-        case 458:
-            cout << "CPA";
         case 457:
+            cout << "CPA";
+            break;
+        case 458:
             cout << "CN&TS";
+            break;
         default: //default is optional
             cout << "unknown program entered";
     }
-
     cout << endl;
 
     /*
-     * Example #3: of switch â€“ what is printed if F is entered?
+     * Example #3: of switch, what is printed if F is entered?
      * TO-DO: Follow the steps in this example and write the appropriate code
     */
     char gender;
@@ -96,15 +103,18 @@ int main()
     }
 
     cout << "\nGender entered: ";
-    switch (gender)
+    switch (tolower(gender))
     {
         // Step 1: Allow both uppercase and lowercase to be entered
-        case 'F':
-            cout << "fe";
+        case 'f':
+            cout << "female";
+            break;
             // Step 2: Move this outside of the switch
-        case 'M':
+        case 'm':
             cout << "male";
+            break;
     }
+    cout << "endl";
 
     /*
      * Example #4: Rewrite nested if as a switch statement
@@ -122,17 +132,20 @@ int main()
         grade = toupper(grade);
     }
 
-    if (grade == 'A')
-        gpa = 4.0;
-    else if (grade == 'B')
-        gpa = 3.0;
-    else if (grade=='C')
-        gpa = 2.0;
-    else if (grade=='D')
-        gpa = 1.0;
-    else
-        gpa = 0.0;
-
+    switch(grade) {
+        case 'A':
+            gpa = 4.0;
+            break;
+        case 'B':
+            gpa = 3.0;
+            break;
+        case 'C':
+            gpa = 2.0;
+            break;
+        default:
+            gpa = 1.0;
+    }
+    
     cout << "\nYour gpa is " << gpa << endl;
     cout << "\nEnd of examples " << endl;
 

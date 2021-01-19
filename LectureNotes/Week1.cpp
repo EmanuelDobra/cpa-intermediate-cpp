@@ -1,6 +1,11 @@
 #include <string>
 #include <iostream>
 
+/***************************************************************************
+your name
+Assignment # ?
+Short narrative stating the purpose of the program
+***************************************************************************/
 int main() {
     int test = 0;
     do {

@@ -20,42 +20,42 @@ int main()
     */
     srand((unsigned)time(0));
     int number, guess;
-    char again = 'y';
+    char again;
     do {
-        cout << "Play the guessing game\n\n";
+        cout << "\nPlay the guessing game\n";
 
         number = rand() % 10 + 1; 
         cout << "I'm thinking of a number from 1 to 10. ";
         //repeatedly ask for guesses
-        cout << "Try to guess it ";
+        cout << "Try to guess it: ";
         cin >> guess;
-        do {
+        while (guess < 1 || guess > 10 || cin.fail()) {
             cin.clear();
             cin.ignore(80,'\n');
-            cout << "number must be 1-10 reenter ";
+            cout << "number must be 1-10 reenter: ";
             cin >> guess;
-        } while (guess < 1 || guess > 10 || cin.fail()); //validate guess 1-10
+        }  //validate guess 1-10
 
         if (number < guess) //check the guess
-            cout << "too high! ";
+            cout << "Too high! ";
         else if (number >guess)
-            cout << "too low! ";
+            cout << "Too low! ";
         else
             cout << "Correct! ";
         
-        cout << "The number was " << number << endl;
+        cout << "The number was: " << number << endl;
 
         //step2b: ask the user if he/she wants to play again
         // store the reply in "again"
         // validate again (allow y or n), use tolower
         cout << "Do you want to play again? ";
         cin >> again; 
-        do {
+        while ((tolower(again) != 'y' && tolower(again) != 'n') || cin.fail()) {
             cin.clear();
             cin.ignore(80,'\n');
-            cout << "Invalid input, enter y or n ";
+            cout << "Invalid input, enter y or n: ";
             cin >> again;
-        } while (tolower(again) != 'y' || tolower(again) != 'n' || cin.fail());
+        } 
     } while (tolower(again) == 'y');
     cout << "\nGame Terminated\n";
 

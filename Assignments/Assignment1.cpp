@@ -24,7 +24,7 @@ int main() {
     std::string guestName;
     char roomType;
     int daysAmount;
-    bool extraBed, enterGuest = true;
+    bool extraBed, enterGuest;
     double totalCharge;
     std::string roomTypeOutput; 
     // Open output file
@@ -84,12 +84,12 @@ char getValidRoomType() {
     char roomType; 
     std::cout << "Enter the guest's room type (G/P/L): ";
     std::cin >> roomType;
-    do {
+    while ((roomType != 'G' && roomType != 'P' && roomType != 'L') || std::cin.fail()); {
         std::cin.clear();
         std::cin.ignore(80, '\n');
         std::cout << "Wrong input, enter G P or L: ";
         std::cin >> roomType;
-    } while ((roomType != 'G' && roomType != 'P' && roomType != 'L') || std::cin.fail());
+    } 
     return roomType;
 }
 
@@ -124,12 +124,12 @@ int getValidDays() {
     int daysAmount;
     std::cout << "Enter the amount of days the guest stayed: ";
     std::cin >> daysAmount;
-    do {
+    while (daysAmount < 0 || daysAmount > 31 || std::cin.fail()) {
         std::cin.clear();
         std::cin.ignore(80, '\n');
         std::cout << "Wrong input, enter a number between 0 and 31: ";
         std::cin >> daysAmount;
-    } while (daysAmount < 0 || daysAmount > 31 || std::cin.fail());
+    } 
     return daysAmount;
 }
 
@@ -142,12 +142,12 @@ bool validateReply(std::string message) {
     std::string answer;
     std::cout << message;
     std::getline(std::cin, answer);
-    do {
+    while ((answer != "yes" && answer != "no") || std::cin.fail()) {
         std::cin.clear();
         std::cin.ignore(80,'\n');
         std::cout << "Inavlid input, enter yes or no: ";
         std::getline(std::cin, answer);
-    } while ((answer != "yes" && answer != "no") || std::cin.fail());
+    }
     if (answer == "yes") 
         return true;
     else 

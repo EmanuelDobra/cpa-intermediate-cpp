@@ -79,10 +79,10 @@ int main()
     { //switch tests for equality only
         //can have 16,384 cases
         case 457:
-            cout << "CPA";
+            cout << "CN&TS";
             break;
         case 458:
-            cout << "CN&TS";
+            cout << "CPA";
             break;
         default: //default is optional
             cout << "unknown program entered";
@@ -107,13 +107,11 @@ int main()
     {
         // Step 1: Allow both uppercase and lowercase to be entered
         case 'f':
-            cout << "female";
+            cout << "fe";
             break;
             // Step 2: Move this outside of the switch
-        case 'm':
-            cout << "male";
-            break;
     }
+    cout << "male";
     cout << "endl";
 
     /*
@@ -124,6 +122,7 @@ int main()
     char grade;
     cout << "\n\nWhat is your letter grade? ";
     cin >> grade;
+    grade = toupper(grade); // missing, needs this to have uppercase answer in case user gives lower
 
     while (grade != 'A' && grade != 'B' && grade != 'C' && grade != 'D' && grade != 'F')
     {

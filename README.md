@@ -17,8 +17,8 @@
 - [ ] Lab 13 due Apr 14
 - [ ] Lab 14 due Apr 21
 - [x] Assignment 1 due Feb 19
-- [ ] Assignment 2 due ???
-- [ ] Assignment 3 due ???
-- [ ] Test 1 ???
-- [ ] Test 2 ???
-- [ ] Test 3 ??? 
+- [ ] Assignment 2 due March 26
+- [ ] Assignment 3 due April 23
+- [ ] Test 1 due February 22
+- [ ] Test 2 due March 29
+- [ ] Test 3 due April 26 

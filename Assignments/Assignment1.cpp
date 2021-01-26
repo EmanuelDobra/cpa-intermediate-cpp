@@ -25,7 +25,7 @@ int main() {
     char roomType;
     int daysAmount;
     bool extraBed, enterGuest;
-    double totalCharge;
+    double roomCharges, totalCharges = 0;
     std::string roomTypeOutput; 
     // Open output file
     std::ofstream fout("charges.txt");
@@ -65,15 +65,21 @@ int main() {
         // Check if user asked for an extra bed
         extraBed = validateReply("Did the guest ask for an extra bed? Answer yes/no: ");
         // Calculate total charge
-        totalCharge = computeRoomCharge(roomType, daysAmount, extraBed);
+        roomCharges = computeRoomCharge(roomType, daysAmount, extraBed);
+        totalCharges += roomCharges;
         // Output entry to file
         fout << std::right << std::setw(15) << guestName 
             << std::right << std::setw(15) << roomTypeOutput
-            << std::left << std::setw(20) << totalCharge << std::endl;
+            << std::left << std::setw(20) << roomCharges << std::endl;
         // Ask for next entry
         enterGuest = validateReply("Do you want to enter another guest? Answer yes/no: ");
     } while (enterGuest);
 
+    fout << std::right << std::setw(30) << "Total Charges: " 
+        << std::left << std::setw(20) << totalCharges << std::endl;
+
+    system("type charges.txt");
+    system("pause");
 }
 
 /**
@@ -159,6 +165,7 @@ bool validateReply(std::string message) {
  * @param roomType the room type of the guest
  * @param restDays total days guest stayed
  * @param extraBed whether or not the guest wanted an extra bed
+ * @return 
 */
 double computeRoomCharge(char roomType, int restDays, bool extraBed) {
     double roomRate;

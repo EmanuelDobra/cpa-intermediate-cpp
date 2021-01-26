@@ -36,6 +36,11 @@ namespace namespace2 {
     }
 
     int globalVar = 99;
+    static int staticVar = 6; // static variables do not get destroyed after function ends
+
+    bool increaseStat(int num) {
+        return num++;
+    }
 }
 
 // global variable example

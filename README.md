@@ -22,3 +22,36 @@
 - [ ] Test 1 due February 22
 - [ ] Test 2 due March 29
 - [ ] Test 3 due April 26 
+
+## GPG key setup
+### Set all commits to use GPG signing
+``` 
+git config --global commit.gpgsign true
+```
+### Create GPG key
+```  
+gpg --gen-key
+```
+You will be prompted for your name and email, make sure to use the one you configured in git. To check your configuration:
+```
+git config --global --get-regexp user..
+``` 
+### Config git
+```
+git config --global user.signingkey HEXKEYGOESHERE
+git config --global commit.gpgsign true
+```
+### Config github
+
+#### Show git logs:  
+```
+git log --show-signature
+```
+#### Get GPG key
+```
+gpg --armor --export HEXKEYGOESHERE
+```
+#### Add it to github
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+
+

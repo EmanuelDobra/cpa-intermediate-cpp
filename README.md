@@ -52,6 +52,6 @@ git log --show-signature
 gpg --armor --export HEXKEYGOESHERE
 ```
 #### Add it to github
-![alt text](https://https://github.com/EmanuelACS/cpa-intermediate-cpp/blob/main/github-addgpg.PNG)
+![Location](https://github.com/EmanuelACS/cpa-intermediate-cpp/blob/main/github-addgpg.PNG)
 
 

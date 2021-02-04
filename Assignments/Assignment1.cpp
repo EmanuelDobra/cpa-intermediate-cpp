@@ -90,11 +90,13 @@ char getValidRoomType() {
     char roomType; 
     std::cout << "Enter the guest's room type (G/P/L): ";
     std::cin >> roomType;
-    while ((roomType != 'G' && roomType != 'P' && roomType != 'L') || std::cin.fail()); {
+    roomType = toupper(roomType);
+    while ((roomType != 'G' && roomType != 'P' && roomType != 'L') || std::cin.fail()) {
         std::cin.clear();
         std::cin.ignore(80, '\n');
         std::cout << "Wrong input, enter G P or L: ";
         std::cin >> roomType;
+        roomType = toupper(roomType);
     } 
     return roomType;
 }

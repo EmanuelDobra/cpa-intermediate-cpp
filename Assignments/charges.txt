@@ -1,0 +1,8 @@
+           CPA Resort Hotel Room Charge
+               ********************
+Guest Name          Room Type                  Room Charge
+
+Guest One           Garden View                     500.00
+Guest Two           Pool View                      3840.00
+Guest Three         Lake View                      2800.00
+Total Charges:                                     7140.00

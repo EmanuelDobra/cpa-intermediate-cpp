@@ -88,42 +88,33 @@ int main()
 }
 
 int loadArrays(string names[], double prices[]) {
-	// read from file and store into arrays
-	string textScan;
-	int noOfLines;
-	ifstream readFile("magazines.dat");
-	
-	// ignore first line
-	getline(readFile, textScan);
-	//readFile >> textScan;
+	int length;
+    ifstream myFile("magazine.dat");
 
-	while (!readFile.eof()) {
-		for (int index = 0; index < SIZE; index++) {
-			getline(readFile, names[index], ',');
-
-		}
-	}
-
-
-	for (int line = 0; line < SIZE; line++) {
-		if (!readFile.eof()) {
-
-			//readFile >> textScan;
-			//names[line] = textScan;
-		}
-	}
-	
-
-	// Use a while loop together with the getline() function to read the file line by line
-	while (getline(readFile, textScan)) {
-		// Output the text from the file
-		cout << textScan;
-	}
-
-	// close file
-	readFile.close();
+    for (length = 0; length < SIZE; length++) {
+        // store magazine name
+        getline(myFile, names[length]);
+        // if eof print number of records and break out
+        if (myFile.eof()) {
+            cout << "\nNumber of records: " << length << endl;
+            break;
+        }
+        // store price and ignore enter
+        myFile >> prices[length];
+        myFile.ignore(80, '\n');
+        // print current magazine info
+        cout << "Magazine: " << names[length] << ", Price: " << prices[length] << endl;
+    }
+    // close file
+    myFile.close();
 }
+
+
+
 
 int addMagazine(string[], double[], int);
 void printMagazines(string[], double[], int);
 int removeMagazine(string[], double[], int);
+
+
+

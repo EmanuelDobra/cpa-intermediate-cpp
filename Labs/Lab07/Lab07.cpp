@@ -33,26 +33,6 @@ int main()
     printMagazines(names, prices, arrLength);
 }
 
-int addAtStart(string names[], double prices[], int noMagazines) {
-    // new magazine to add to array
-    string newMagName = "Chosen";
-    double newMagPrice = 42.99;
-
-    if (noMagazines == SIZE) {
-        cout << "Array is full, cannot add new magazine!\n";
-    } 
-    else {
-        for (int index = noMagazines; index > 0; index--) {
-            names[index] = names[index-1];
-            prices[index] = prices[index-1];
-        }
-        names[0] = newMagName;
-        prices[0] = newMagPrice;
-        noMagazines += 1;
-    }
-    return noMagazines;
-}
-
 int loadArrays(string names[], double prices[]) {
     int length;
     ifstream myFile("magazine.dat");
@@ -92,6 +72,26 @@ int removeMagazine(string names[], double prices[], int noMagazines) {
             prices[index] = prices[index+1];
         }
         noMagazines -= 1;
+    }
+    return noMagazines;
+}
+
+int addAtStart(string names[], double prices[], int noMagazines) {
+    // new magazine to add to array
+    string newMagName = "Chosen";
+    double newMagPrice = 42.99;
+
+    if (noMagazines == SIZE) {
+        cout << "Array is full, cannot add new magazine!\n";
+    } 
+    else {
+        for (int index = noMagazines; index > 0; index--) {
+            names[index] = names[index-1];
+            prices[index] = prices[index-1];
+        }
+        names[0] = newMagName;
+        prices[0] = newMagPrice;
+        noMagazines += 1;
     }
     return noMagazines;
 }

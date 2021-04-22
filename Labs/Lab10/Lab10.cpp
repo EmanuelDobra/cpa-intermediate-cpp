@@ -7,18 +7,20 @@ using namespace std;
 
 const int SIZE = 25;
 
-int loadArrays(string[], double[][3]);
-void printReport(string[], double[][3], int);
+int loadArrays(string[], double[][3], ifstream&);
+void printReport(string[], double[][3], int, ofstream& outFile);
 
 int main()
 {
-    string birdTypes[SIZE];
-    double birdSightings[SIZE][3]; // int x[3][4] = {{0,1,2,3}, {4,5,6,7}, {8,9,10,11}}; SO 3/3
-    int birdCount = loadArrays(birdTypes, birdSightings);
-    printReport(birdTypes, birdSightings, birdCount);
-}
+    // Open input file
+    ifstream myFile("birds.dat");
+    if (!myFile.is_open()) {
+        cout << "error opening file";
+        system("pause");
+        exit(-1);
+    }
 
-void printReport(string birdTypes[], double birdSightings[][3], int birdCount) {
+    // Open output file
     ofstream outFile("birds.rpt");
     if (!outFile.is_open()) {
         cout << "error opening file";
@@ -26,6 +28,14 @@ void printReport(string birdTypes[], double birdSightings[][3], int birdCount) {
         exit(-1);
     }
 
+    string birdTypes[SIZE];
+    double birdSightings[SIZE][3]; // int x[3][4] = {{0,1,2,3}, {4,5,6,7}, {8,9,10,11}}; SO 3/3
+    int birdCount = loadArrays(birdTypes, birdSightings, myFile);
+    printReport(birdTypes, birdSightings, birdCount, outFile);
+}
+
+// Print the birds report to output file
+void printReport(string birdTypes[], double birdSightings[][3], int birdCount, ofstream& outFile) {
     for (int pos = 0; pos < birdCount; pos++) {
         outFile << birdTypes[pos] << "\t";
 
@@ -40,14 +50,8 @@ void printReport(string birdTypes[], double birdSightings[][3], int birdCount) {
     system("type birds.rpt");
 }
 
-int loadArrays(string birdTypes[], double birdSightings[][3]) {
-    ifstream myFile("birds.dat");
-    if (!myFile.is_open()) {
-        cout << "error opening file";
-        system("pause");
-        exit(-1);
-    }
-
+// Fill the arrays with data from file
+int loadArrays(string birdTypes[], double birdSightings[][3], ifstream& myFile) {
     int pos;
     for (pos = 0; pos < SIZE; pos++) {
         getline(myFile, birdTypes[pos]);
@@ -59,7 +63,7 @@ int loadArrays(string birdTypes[], double birdSightings[][3]) {
         myFile.ignore(80, '\n');
     }
     myFile.close();
-    
+
     return pos;
 }
 
